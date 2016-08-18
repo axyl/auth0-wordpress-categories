@@ -4,13 +4,13 @@ function filter_posts($posts) {
   // Should contain all the posts fetched from the DB.
   // Are we in admin area?
   if (is_admin()) return $posts;
-  // If the user isn't logged in, then let wp-members handle it.
-  // wp-members is installed to control which posts are available to unregistered users.
-  // TODO : Remove this and update the code below to handle unregistered users too.
-  if (!is_user_logged_in()) return $posts;
-
-  // Get the Auth0 Details from the logged in user.
-  $Auth0Data = json_decode(get_user_meta(get_current_user_id(), "wp_auth0_obj", true));
+  // If the user isn't logged in, then they will get the same slugs as registered users with no Auth0 permissions.
+  if (!is_user_logged_in()) {
+    $Auth0Data= "";
+  } else {
+    // Get the Auth0 Details.
+    $Auth0Data = json_decode(get_user_meta(get_current_user_id(), "wp_auth0_obj", true));
+  }
 
   // What category slug names do we let any logged in user view?
   $allowedCategories= array("free");
