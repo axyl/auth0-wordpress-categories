@@ -24,10 +24,8 @@ How you setup your user's details in Auth0 is up to you, but for a quick demo, I
   * The functions.php file from here should be placed into your Child Theme's directory.
 * Switch to that theme within WordPress.  
 * Install the Auth0 Login plugin for WordPress.
-* In the Auth0 settings in WordPress Admin...
-  * Specify your Domain
-  * Client ID
-  * and Client Secret.  (I think the API token is only needed for the automated setup?)
+  * Setup your Auth0 settings in WordPress Admin.
+  * Note that if you do the automatic setup, then the Auth0 plugin tries to make a new client.
 * Log into the Blog with a new Auth0 based account, whether database or OAuth based.
   * Any posts that are not included in the paid category will be invisible to you.
 * Find the User in the Auth0 Users screen and modify their app_metadata to include...
