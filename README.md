@@ -5,15 +5,15 @@ How to filter WordPress posts by category for subscribers (readers, not authors)
 Tags: auth0, wordpress, auth0-plugin
 
 ## Requirements
-[WordPress](https://wordpress.org/) Version 4.6 is what I used, but 4.5 will be fine too.
-[Login by Auth0][https://wordpress.org/plugins/auth0/] Version 3.2.4 is what I used.  
-[Auth0](https://auth0.com) Identity System.
+* [WordPress](https://wordpress.org/) Version 4.6 is what I used, but 4.5 will be fine too.
+* [Login by Auth0](https://wordpress.org/plugins/auth0/) Version 3.2.4 is what I used.  
+* [Auth0](https://auth0.com) Identity System.
 
 ## Setup
 
 My sample was designed to work with a custom theme in WordPress, rather than as a plugin.  (That should be changed...)
 
-How you setup your user's details in Auth0 is up to you, but for a quick, demo, I modified the app_metadata for the users I was testing with, to add blogCategories with slugs that they were permitted to view.
+How you setup your user's details in Auth0 is up to you, but for a quick demo, I modified the app_metadata for the users I was testing with, to add blogCategories with slugs that they were permitted to view.
 
 * Install WordPress.
 * Create some Categories, with slugs, including __free__ and __paid__ (if you want to use my sample)
@@ -29,7 +29,7 @@ How you setup your user's details in Auth0 is up to you, but for a quick, demo, 
   * Client ID
   * and Client Secret.  (I think the API token is only needed for the automated setup?)
 * Log into the Blog with a new Auth0 based account, whether database or OAuth based.
-  * Any posts that are not part included in the paid category will be invisible to you.
+  * Any posts that are not included in the paid category will be invisible to you.
 * Find the User in the Auth0 Users screen and modify their app_metadata to include...
 ```
 {
