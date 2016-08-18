@@ -30,18 +30,23 @@ function filter_posts($posts) {
   }
 
   // Run through each post in the array and see if the post has any categories that are allowed against this user.
-  for ($loopPosts= 0; $loopPosts<= count($posts); $loopPosts++) {
-    $post_categories= wp_get_post_categories($posts[$loopPosts]->ID);
+  for ($loopPosts= 0; $loopPosts< count($posts); $loopPosts++) {
     $postAllowed= false;
+    // We want to limit this to just post_type's of post
+    if ($posts[$loopPosts]->post_type== "post") {
+      $post_categories= wp_get_post_categories($posts[$loopPosts]->ID);
 
-    foreach ($post_categories as $post_category) {
-      $category= get_category($post_category);
-      // Compare the slug with the roles we get back from Auth0!!!!!!
-      if (in_array($category->slug, $allowedCategories))
-      {
-        $postAllowed= true;
-        // We should break here...why keep going?
+      foreach ($post_categories as $post_category) {
+        $category= get_category($post_category);
+        // Compare the slug with the roles we get back from Auth0!!!!!!
+        if (in_array($category->slug, $allowedCategories))
+        {
+          $postAllowed= true;
+        }
       }
+    } else {
+      // Post type isn't post, so allow...
+      $postAllowed= true;
     }
     if ($postAllowed) {
       // Could consider just giving back the extracts when the post is denied?g
